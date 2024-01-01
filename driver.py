@@ -1,16 +1,9 @@
-from lib.Task import Task
-import json
-from lib.data import loadData, saveData
+from lib.Task import Task, Tasks
+from lib.data import loadData, saveData, delData
 
-t = []
-t_data = []
-for i in range(0,10):
-    t.append(Task("40100"+str(i),"NNNigga",3,"2024-01-01"))
-for task in t:
-    t_data.append(task.getData())
-saveData(t_data,'data/data.json')
-tasks = loadData('data.json')
-print(tasks)
-for task in tasks:
-    t = Task(dict_=task)
-    t.testPrint()
+t1 = Task("401001","Current electricity", 3, "2023-12-31")
+t2 = Task("402001", "Static dynamics", 5, "2023-12-31")
+list_dat = [t1, t2]
+tasklist = Tasks(list_dat)
+tasklist.delData(tasklist.findPos("401001"))
+print(tasklist.contents())
